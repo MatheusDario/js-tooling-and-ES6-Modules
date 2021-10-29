@@ -26,19 +26,19 @@ body {
   border-radius: 10px;
 }
 
-form button {
+button {
   display: block;
   width: 100%;
   margin-bottom: 10px;
 }
 
-form label {
+label {
   font-size: 20px;
   height: 50px;
   padding: 0 20px;
 }
 
-form button {
+button {
   border: none;
   background: var(--primary-color);
   color: #fff;
@@ -49,6 +49,23 @@ form button {
   margin-top: 30px;
 }
 
-form button:hover {
+button:hover {
   background: var(--primary-color-darker);
+}
+
+.senha-gerada {
+  font-size: 2em;
+  color: rgb(53, 194, 53);
+  margin: 40px 0;
+}
+
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
+
+button {
+  display: block;
+  margin: 40px 0;
+  font-size: 2em;
 }
