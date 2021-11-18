@@ -6,7 +6,7 @@ app.get('/', (request, response) => {
 });
 
 app.get('/contato', (request, response) => {
-    response.send('Obrigado por entrar em contato com a gente!')
+    response.send('Obrigado por entrar em contato com a gente! Volte Sempre')
 });
 
 app.listen(3000, () => {
