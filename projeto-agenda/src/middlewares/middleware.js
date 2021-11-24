@@ -3,6 +3,8 @@ const { response } = require("express");
 exports.middlewareGlobal = (require, response, next) => {
     response.locals.errors = require.flash('errors');
     response.locals.success = require.flash('success');
+    response.locals.successLogin = require.flash('successLogin');
+    response.locals.user = require.session.user;
     next();
 };
 
