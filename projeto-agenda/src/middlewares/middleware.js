@@ -1,7 +1,8 @@
 const { response } = require("express");
 
 exports.middlewareGlobal = (require, response, next) => {
-    response.locals.umaVariavelLocal = 'Este e o valor da variavel local'
+    response.locals.errors = require.flash('errors');
+    response.locals.success = require.flash('success');
     next();
 };
 
