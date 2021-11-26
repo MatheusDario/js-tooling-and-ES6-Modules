@@ -11,26 +11,31 @@
 
           <%- include('includes/messages'); %>
 
+          <% if(contato._id) { %>
+          <form action="/contato/edit/<%= contato._id %>" method="POST">
+          <% } else { %>
           <form action="/contato/register" method="POST">
-            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
-            <div class="mb-3">
-              <label class="form-label">Nome:</label>
-              <input value="<%= contato.nome %>" placeholder="Digite o nome desejado" type="text" class="form-control" name="nome">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Sobrenome:</label>
-              <input value="<%= contato.sobrenome %>" placeholder="Digite o sobrenome" type="text" class="form-control" name="sobrenome">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">E-mail:</label>
-              <input value="<%= contato.email %>" placeholder="Digite o email" type="email" class="form-control" name="email">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Telefone:</label>
-              <input value="<%= contato.telefone %>" placeholder="Digite o telefone" type="tel" class="form-control" name="telefone">
-            </div>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-          </form>
+            <% } %>
+              <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+              <div class="mb-3">
+                <label class="form-label">Nome:</label>
+                <input value="<%= contato.nome %>" placeholder="Digite o nome desejado" type="text" class="form-control" name="nome">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Sobrenome:</label>
+                <input value="<%= contato.sobrenome %>" placeholder="Digite o sobrenome" type="text" class="form-control" name="sobrenome">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">E-mail:</label>
+                <input value="<%= contato.email %>" placeholder="Digite o email" type="email" class="form-control" name="email">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Telefone:</label>
+                <input value="<%= contato.telefone %>" placeholder="Digite o telefone" type="tel" class="form-control" name="telefone">
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+          
           
 
 

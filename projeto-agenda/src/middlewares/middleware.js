@@ -5,6 +5,7 @@ exports.middlewareGlobal = (require, response, next) => {
     response.locals.success = require.flash('success');
     response.locals.successLogin = require.flash('successLogin');
     response.locals.successContato = require.flash('successContato');
+    response.locals.contatoEditado = require.flash('contatoEditado');
     response.locals.user = require.session.user;
     next();
 };

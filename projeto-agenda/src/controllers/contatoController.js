@@ -27,9 +27,33 @@ exports.register = async(require,response) => {
 
 exports.editIndex = async  function (require, response)  {
     if(!require.params.id) return response.render('404');
-
+    
     const contato = await Contato.buscaPorId(require.params.id);
     if(!contato) return response.render('404')
 
     response.render('contato', { contato });
-}
+};
+
+exports.edit = async function(require, response) {
+    try{
+        if(!require.params.id) return response.render('404');
+        const contato = new Contato(require.body);
+        await contato.edit(require.params.id);
+
+        if(contato.errors.length > 0) {
+            require.flash('errors', contato.errors);
+            require.session.save(() => response.redirect('/contato/index'));
+            return;
+        }
+
+        require.flash('contatoEditado', 'Contato editado com Sucesso.');
+        require.session.save(() => response.redirect(`/contato/index/${contato.contato._id}`));
+        return;
+
+    } catch(e) {
+        console.log(e);
+        response.render('404');
+    }
+    
+};
+
