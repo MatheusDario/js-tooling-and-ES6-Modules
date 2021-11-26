@@ -15,19 +15,19 @@
             <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             <div class="mb-3">
               <label class="form-label">Nome:</label>
-              <input placeholder="Digite o nome desejado" type="text" class="form-control" name="nome">
+              <input value="<%= contato.nome %>" placeholder="Digite o nome desejado" type="text" class="form-control" name="nome">
             </div>
             <div class="mb-3">
               <label class="form-label">Sobrenome:</label>
-              <input placeholder="Digite o sobrenome" type="text" class="form-control" name="sobrenome">
+              <input value="<%= contato.sobrenome %>" placeholder="Digite o sobrenome" type="text" class="form-control" name="sobrenome">
             </div>
             <div class="mb-3">
               <label class="form-label">E-mail:</label>
-              <input placeholder="Digite o email" type="email" class="form-control" name="email">
+              <input value="<%= contato.email %>" placeholder="Digite o email" type="email" class="form-control" name="email">
             </div>
             <div class="mb-3">
               <label class="form-label">Telefone:</label>
-              <input placeholder="Digite o telefone" type="tel" class="form-control" name="telefone">
+              <input value="<%= contato.telefone %>" placeholder="Digite o telefone" type="tel" class="form-control" name="telefone">
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
           </form>
