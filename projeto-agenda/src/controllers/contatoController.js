@@ -57,3 +57,13 @@ exports.edit = async function(require, response) {
     
 };
 
+exports.delete = async function(require, response) {
+    if(!require.params.id) return response.render('404');
+    
+    const contato = await Contato.delete(require.params.id);
+    if(!contato) return response.render('404')
+
+    require.flash('deleteContato', 'Seu contato foi Deletado com Sucesso.');
+    require.session.save(() => response.redirect('http://localhost:3000/'));
+    return;
+}

@@ -5,7 +5,7 @@ const ContatoSchema = new mongoose.Schema({
     nome: {type: String, required: true},
     sobrenome: {type: String, required: false, default: ''},
     email: {type: String, required: false, default: ''},
-    telelefone: {type: String, required: false, default: ''},
+    telefone: { type: String, required: false, default: '' },
     criadoEm: {type: Date, default: Date.now}
 }); 
 
@@ -19,8 +19,20 @@ function Contato(body) {
 
 Contato.buscaPorId = async function(id) {
     if(typeof id !== 'string') return;
-    const user = await ContatoModel.findById(id);
-    return user;
+    const contato = await ContatoModel.findById(id);
+    return contato;
+}
+
+Contato.buscaContatos = async function() {
+    const contatos = await ContatoModel.find()
+    .sort({criadosEm: -1});
+    return contatos;
+}
+
+Contato.delete = async function(id) {  
+    if(typeof id !== 'string') return;
+    const contato = await ContatoModel.findOneAndDelete({_id: id});
+    return contato;
 }
 
 Contato.prototype.register = async function () {
