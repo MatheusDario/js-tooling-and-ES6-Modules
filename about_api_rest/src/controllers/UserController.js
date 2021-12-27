@@ -5,7 +5,8 @@ class UserController {
   async create(req, res) {
     try {
       const novoUser = await User.create(req.body);
-      return res.json(novoUser);
+      const { id, nome, email } = novoUser;
+      return res.json({ id, nome, email });
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -16,7 +17,7 @@ class UserController {
   // Index
   async index(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({ attributes: ['id', 'nome', 'email'] });
       return res.json(users);
     } catch (e) {
       return res.json(null);
@@ -36,13 +37,7 @@ class UserController {
   // Update
   async update(req, res) {
     try {
-      if (!req.params.id) {
-        return res.status(400).json({
-          errors: ['Missing ID.'],
-        });
-      }
-
-      const users = await User.findByPk(req.params.id);
+      const users = await User.findByPk(req.userId);
 
       if (!users) {
         return res.status(400).json({
@@ -51,8 +46,9 @@ class UserController {
       }
 
       const novosDados = await users.update(req.body);
+      const { id, nome, email } = novosDados;
 
-      return res.json(novosDados);
+      return res.json({ id, nome, email });
     } catch (e) {
       console.log(e);
       return res.status(400).json({
@@ -64,13 +60,7 @@ class UserController {
   // Delete
   async delete(req, res) {
     try {
-      if (!req.params.id) {
-        return res.status(400).json({
-          errors: ['Missing ID.'],
-        });
-      }
-
-      const users = await User.findByPk(req.params.id);
+      const users = await User.findByPk(req.userId);
 
       if (!users) {
         return res.status(400).json({
@@ -79,7 +69,7 @@ class UserController {
       }
 
       await users.destroy();
-      return res.json(users);
+      return res.json({ message: 'Usuario deletado' });
     } catch (e) {
       console.log(e);
       return res.status(400).json({
