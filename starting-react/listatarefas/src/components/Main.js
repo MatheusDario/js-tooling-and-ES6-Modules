@@ -26,6 +26,7 @@ export default class Main extends Component {
 
 		this.setState({
 			tarefas: [...novasTarefas, novaTarefa],
+			novaTarefa: '',
 		});
 	};
 
@@ -33,6 +34,20 @@ export default class Main extends Component {
 		this.setState({
 			novaTarefa: e.target.value,
 		});
+	};
+
+	hendleDelete = (e, index) => {
+		const {tarefas} = this.state;
+		const novasTarefas = [...tarefas];
+		novasTarefas.splice(index, 1);
+
+		this.setState({
+			tarefas: [...novasTarefas],
+		});
+	};
+
+	hendleEdit = (e, index) => {
+		console.log('Edit', index);
 	};
 
 	render() {
@@ -54,12 +69,12 @@ export default class Main extends Component {
 				</form>
 
 				<ul className="tarefas">
-					{tarefas.map(tarefa => (
+					{tarefas.map((tarefa, index) => (
 						<li key={tarefa}>
 							{tarefa}
 							<span>
-								<FaEdit className="edit" />
-								<FaWindowClose className="delete"/>
+								<FaEdit onClick={e => this.hendleEdit(e, index)} className="edit" />
+								<FaWindowClose onClick={e => this.hendleDelete(e, index)} className="delete"/>
 							</span>
 						</li>
 					))}
